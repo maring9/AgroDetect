@@ -10,6 +10,14 @@
       "StackName": "amplify-agrodetect-dev-121057",
       "StackId": "arn:aws:cloudformation:eu-central-1:291860784967:stack/amplify-agrodetect-dev-121057/11819160-9a3d-11ed-a6eb-022114929670",
       "AmplifyAppId": "d80qzn098m3yn"
+    },
+    "categories": {
+      "auth": {
+        "agrodetectbc12c35a": {}
+      },
+      "storage": {
+        "agrodetectInferenceImages": {}
+      }
     }
   }
 }

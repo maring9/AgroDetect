@@ -1,0 +1,13 @@
+{
+  "resourceName": "agrodetectInferenceImages",
+  "policyUUID": "dcf54f1b",
+  "bucketName": "agro-detect-inference-images",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
