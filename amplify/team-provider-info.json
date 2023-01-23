@@ -9,14 +9,25 @@
       "UnauthRoleName": "amplify-agrodetect-dev-121057-unauthRole",
       "StackName": "amplify-agrodetect-dev-121057",
       "StackId": "arn:aws:cloudformation:eu-central-1:291860784967:stack/amplify-agrodetect-dev-121057/11819160-9a3d-11ed-a6eb-022114929670",
-      "AmplifyAppId": "d80qzn098m3yn"
+      "AmplifyAppId": "d80qzn098m3yn",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-agrodetect-dev-121057-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
-        "agrodetectbc12c35a": {}
+        "agrodetectbc12c35a": {},
+        "AgroDetect": {}
       },
       "storage": {
         "agrodetectInferenceImages": {}
+      },
+      "function": {
+        "agrodetectInference": {
+          "deploymentBucketName": "amplify-agrodetect-dev-121057-deployment",
+          "s3Key": "amplify-builds/agrodetectInference-45666b2f49514a6e525a-build.zip"
+        }
+      },
+      "api": {
+        "agrodetect": {}
       }
     }
   }
