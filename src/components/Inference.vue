@@ -1,5 +1,5 @@
 <script>
-import {Auth, API} from 'aws-amplify';
+import {Auth, API, Storage} from 'aws-amplify';
 
     export default {
         data() {
@@ -24,6 +24,17 @@ import {Auth, API} from 'aws-amplify';
                 console.log("result: ", testResult)
 
                 this.returnObject = testResult
+            },
+            async uploadImage(event) {
+                const imageFile = event.target.files[0]
+                try {
+                    await Storage.put(imageFile.name, imageFile, {
+                        level: "private",
+                        contentType: "image/*"
+                    });
+                } catch (error) {
+                    console.log("Error uploading file: ", error)
+                }
             }
         }
 
@@ -36,5 +47,6 @@ import {Auth, API} from 'aws-amplify';
     </h1>
     
     <button @click="testLambda">Test Lambda</button>
-    
+    <br>
+    <input type="file" accept="image/*" @change="uploadImage"/>
 </template>
