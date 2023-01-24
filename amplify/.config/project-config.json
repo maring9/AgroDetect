@@ -6,7 +6,7 @@
     "framework": "vue",
     "config": {
       "SourceDir": "src",
-      "DistributionDir": "frontendbld",
+      "DistributionDir": "dist",
       "BuildCommand": "npm.cmd run-script build",
       "StartCommand": "npm.cmd run-script serve"
     }
