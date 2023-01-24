@@ -29,8 +29,6 @@ coverage
 
 public/
 .vscode/
-package-lock.json
-package.json
 vite.config.js
 
 #amplify-do-not-edit-begin
