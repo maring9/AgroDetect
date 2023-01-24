@@ -34,10 +34,13 @@
         },
         "signupAttributes": [
           "EMAIL",
-          "NAME",
-          "FAMILY_NAME"
+          "NAME"
         ],
-        "socialProviders": [],
+        "socialProviders": [
+          "FACEBOOK",
+          "GOOGLE",
+          "AMAZON"
+        ],
         "usernameAttributes": [
           "EMAIL"
         ],
