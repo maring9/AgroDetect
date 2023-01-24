@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "paths": {
+    "/detectDisease": {
+      "name": "/detectDisease",
+      "lambdaFunction": "agrodetectInference",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update"
+        ]
+      }
+    }
+  }
+}

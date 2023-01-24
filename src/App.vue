@@ -1,6 +1,9 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import { Authenticator } from '@aws-amplify/ui-vue';
+import Inference from './components/Inference.vue';
+import '@aws-amplify/ui-vue/styles.css';
 </script>
 
 <template>
@@ -13,7 +16,13 @@ import TheWelcome from './components/TheWelcome.vue'
   </header>
 
   <main>
-    <TheWelcome />
+    <authenticator>
+    <template v-slot="{ user, signOut }">
+      <h1>Hello {{ user.username }}!</h1>
+      <Inference></Inference>
+      <button @click="signOut">Sign Out</button>
+    </template>
+  </authenticator>
   </main>
 </template>
 
