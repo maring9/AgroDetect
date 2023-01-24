@@ -1,9 +1,7 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
 import { Authenticator } from '@aws-amplify/ui-vue';
 import Inference from './components/Inference.vue';
-import '@aws-amplify/ui-vue/styles.css';
 </script>
 
 <template>
