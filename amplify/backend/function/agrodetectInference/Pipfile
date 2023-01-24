@@ -10,3 +10,5 @@ src = {editable = true, path = "./src"}
 
 [requires]
 python_version = "3.8"
+pipenv
+virtualenv
