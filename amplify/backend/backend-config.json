@@ -1,20 +1,5 @@
 {
-  "api": {
-    "agrodetect": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "agrodetectInference"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "API Gateway"
-    }
-  },
+  "api": {},
   "auth": {
     "AgroDetect": {
       "customAuth": false,
@@ -52,31 +37,7 @@
       "service": "Cognito"
     }
   },
-  "function": {
-    "agrodetectInference": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_function_agrodetectInference_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "agrodetectInference"
-        }
-      ]
-    },
-    "AMPLIFY_function_agrodetectInference_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "agrodetectInference"
-        }
-      ]
-    }
-  },
+  "function": {},
   "storage": {
     "agrodetectInferenceImages": {
       "dependsOn": [],
