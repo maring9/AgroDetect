@@ -1,5 +1,6 @@
 <script>
-import {Auth, API, DataStore} from 'aws-amplify';
+import {Auth, API} from 'aws-amplify';
+import { DataStore } from '@aws-amplify/datastore';
 import {User, Inference, AccountType} from "../models";
 
     export default {
