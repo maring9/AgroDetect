@@ -3,6 +3,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import { Authenticator } from '@aws-amplify/ui-vue';
 import Inference from './components/Inference.vue';
 import '@aws-amplify/ui-vue/styles.css';
+import TestGraphQL from './components/TestGraphQL.vue';
 </script>
 
 <template>
@@ -18,6 +19,7 @@ import '@aws-amplify/ui-vue/styles.css';
     <authenticator>
     <template v-slot="{ user, signOut }">
       <h1>Hello {{ user.username }}!</h1>
+      <TestGraphQL></TestGraphQL>
       <Inference></Inference>
       <button @click="signOut">Sign Out</button>
     </template>
