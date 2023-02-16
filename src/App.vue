@@ -1,55 +1,60 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import { Authenticator } from '@aws-amplify/ui-vue';
-import Inference from './components/Inference.vue';
-import '@aws-amplify/ui-vue/styles.css';
-</script>
-
 <template>
-  <header>
-    <img alt="AgroDetectLogo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!!" />
-    </div>
-  </header>
-
+  <TheHeader></TheHeader>
   <main>
-    <authenticator>
-    <template v-slot="{ user, signOut }">
-      <h1>Hello {{ user.username }}!</h1>
-      <Inference></Inference>
-      <button @click="signOut">Sign Out</button>
-    </template>
-  </authenticator>
+    <RouterView></RouterView>
   </main>
+  <br>
+  <TheFooter></TheFooter>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script>
+import '@aws-amplify/ui-vue/styles.css';
+import TheHeader from './components/layout/TheHeader.vue';
+import TheFooter from './components/layout/TheFooter.vue';
+export default {
+  components: {
+    TheHeader: TheHeader,
+    TheFooter: TheFooter,
+}
+}
+</script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+html {
+  font-family: "Roboto", sans-serif;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+body {
+  margin: 0;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.route-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.route-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.route-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.route-enter-to,
+.route-leave-from {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
