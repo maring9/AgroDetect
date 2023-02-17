@@ -13,7 +13,10 @@ export default {
 
 <template>
     <TheHeader></TheHeader>
-    <h1>In home page</h1>
-    <TheFooter></TheFooter>
+    <BaseCard>
+        <h1>In home page</h1>
+    </BaseCard>
+
+<TheFooter></TheFooter>
 </template>
 

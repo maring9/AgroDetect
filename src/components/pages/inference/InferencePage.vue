@@ -12,6 +12,9 @@ export default {
 </script>
 <template>
     <TheHeader></TheHeader>
-    <h1>On inference page</h1>
+    <BaseCard>
+        <h1>On inference page</h1>
+    </BaseCard>
+    
     <TheFooter></TheFooter>
 </template>
