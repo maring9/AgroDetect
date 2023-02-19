@@ -14,7 +14,6 @@ export default {
     <TheHeader></TheHeader>
     <BaseCard>
         <h1>On inference page</h1>
-    </BaseCard>
-    
+    </BaseCard> 
     <TheFooter></TheFooter>
 </template>

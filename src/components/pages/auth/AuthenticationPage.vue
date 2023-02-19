@@ -1,11 +1,119 @@
 <script setup>
 import { Authenticator } from '@aws-amplify/ui-vue';
-import Inference from '../../Inference.vue';
 import '@aws-amplify/ui-vue/styles.css';
+import { Auth } from 'aws-amplify';
+import {APIGatewayClient, CreateApiKeyCommand, CreateUsagePlanKeyCommand} from "@aws-sdk/client-api-gateway";
+import {v4 as uuidv4} from 'uuid';
+import store from '../../../store/index';
+import router from '../../../router';
+
+const formFields = {
+  signIn: {
+    username: {
+      placeholder: 'Enter you email'
+    },
+    password: {
+      placeholder: 'Enter your password'
+    }
+  }
+}
+const services = {
+  async handleSignIn(formData) {
+    let {username, password} = formData;
+    try {
+      const user = await Auth.signIn(username, password);
+      store.commit('setUser', user);
+      const api_key = await handleKeyCreation();
+      console.log('key: ', api_key);
+      store.commit('setApiKey', api_key);
+      router.push('/home');
+      console.log(user);
+    }catch(error) {
+      console.log("Error signing in: ", error);
+    }
+  }
+}
+
+async function handleKeyCreation() {
+  const api_client = new APIGatewayClient({region: "eu-central-1"});
+  console.log("API CLIENT: ", api_client);
+  const key_identifier = uuidv4();
+  console.log("UUID: ", key_identifier);
+  key = await createApiKey(api_client, key_identifier)
+  console.log("Returned key: ", key);
+
+  api_key = await associateKeyToUsagePlan(client, key)
+  console.log("Assciated key: ", api_key);
+  if (api_key !== null) {
+    return api_key;
+  }
+  console.log("ERROR");
+  return null;
+}
+
+async function associateKeyToUsagePlan(client, api_key, usagePlan="Basic") {
+  const usagePlans = {
+    'Basic': "psu7wi",
+    'Premium': "4wznv0"
+  };
+
+  if (!usagePlan || !(usagePlan in usagePlans)) {
+    console.log(usagePlan + " usage plan does not exist");
+    return false;
+  }
+
+  const params = {
+    keyId: api_key.id,
+    keyType: "API_KEY",
+    usagePlanId: usagePlans[usagePlan]
+  };
+  console.log("Usage plan params: ", params);
+
+  const command = new CreateUsagePlanKeyCommand(params);
+  console.log("Usage plan params: ", params);
+
+  const associated_api_key = client.send(command)
+  .then((data) => {
+    console.log("Associated key to usage plan")
+    console.log("Data: " + data)
+    return data;
+  })
+  .catch((error) => {
+    console.log("Failed to associate key to usage plan " + error);
+    return null;
+  });
+
+  return associated_api_key;
+}
+async function createApiKey(client, apiKeyName, usagePlan='Basic') {
+  const params = {
+    name: apiKeyName,
+    description: "API Key for " + usagePlan + " usage plan created on " + (new Date).toISOString(),
+    enabled: true,
+    generateDistinctId: true
+  };
+
+  console.log("Create key params: ", params);
+
+  const command = new CreateApiKeyCommand(params);
+  console.log("Create key command: ", command);
+  const api_key = client.send(command)
+  .then((data) => {
+    console.log("Created API KEY: " + data);
+    return data;
+  })
+  .catch((error) => {
+    console.log("Failed to create API KEY: " + error);
+    return null;
+  })
+
+  return api_key;
+}
+
 </script>
 
 <template>
-    <authenticator :form-fields="formFields">
+    <authenticator :form-fields="formFields" :services="services">
       <template v-slot:header>
         <div style="padding: var(--amplify-space-large); text-align: center">
           <img
